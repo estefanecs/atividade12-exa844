@@ -31,7 +31,7 @@ function MessageTable({ messages, filterText }) {
   const rows = [];
   messages.forEach((message) => {
     console.log(message[1]);
-    if (message.includes(filterText)) {
+    if (message[1].toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
        return;
     }
     rows.push(<MessageRow message={message} key={message[1]} />);
