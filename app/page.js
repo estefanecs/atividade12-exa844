@@ -33,7 +33,7 @@ function MessageTable({ messages, filterText }) {
     if (messages.includes(filterText)) {
       return;
     }
-    rows.push(<MessageRow message={message} key={message.message} />);
+    rows.push(<MessageRow message={message} key={message[1]} />);
   });
 
   return (
