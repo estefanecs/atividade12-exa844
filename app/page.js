@@ -30,7 +30,7 @@ function SearchBar({ filterText, onFilterTextChange }) {
 function MessageTable({ messages, filterText }) {
   const rows = [];
   messages.forEach((message) => {
-    if (messages[1].includes(filterText)) {
+     if (message[1].toLowerCase().indexOf(filterText.toLowerCase()) === -1) {
       return;
     }
     rows.push(<MessageRow message={message} key={message[1]} />);
