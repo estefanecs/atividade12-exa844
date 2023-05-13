@@ -32,9 +32,8 @@ function MessageTable({ messages, filterText }) {
   messages.forEach((message) => {
     console.log(message[1]);
     if (message[1].toLowerCase().indexOf(filterText.toLowerCase()) >=0){
-       return;
+       rows.push(<MessageRow message={message} />);
     }
-    rows.push(<MessageRow message={message} />);
   });
 
   return (
