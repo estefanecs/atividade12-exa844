@@ -27,13 +27,16 @@ function SearchBar({ filterText, onFilterTextChange }) {
   );
 }
 
-function MessageTable({ messages, filterText }) {
+function FilterableMessageTable({ messages, filterText}) {
   const rows = [];
   messages.forEach((message) => {
-    if (messages.includes(filterText)) {
+     if (messages[1].includes(filterText)) {
       return;
     }
-    rows.push(<MessageRow message={message} key={message[1]} />);
+    rows.push(
+      <MessageRow
+        message={message}
+        key={message[1]} />);
   });
 
   return (
@@ -41,7 +44,7 @@ function MessageTable({ messages, filterText }) {
       <thead>
         <tr>
           <th>Author</th>
-          <th>Messages</th>
+          <th>Message</th>
           <th>Date</th>
         </tr>
       </thead>
@@ -50,16 +53,6 @@ function MessageTable({ messages, filterText }) {
   );
 }
 
-function FilterableMessagesTable({ messages }) {
-  const [filterText, setFilterText] = useState("");
-
-  return (
-    <div>
-      <SearchBar filterText={filterText} onFilterTextChange={setFilterText} />
-      <MessageTable messages={messages} filterText={filterText} />
-    </div>
-  );
-}
 
 export default function Home() {
   const [blogMessages, setBlogMessages] = useState([]);
@@ -72,9 +65,12 @@ export default function Home() {
       setBlogMessages(data);
     });
 
-  return (
-    <main className={styles.main}>
-      <FilterableMessagesTable messages={blogMessages} />
-    </main>
-  );
+    return (
+      <main className={styles.main}>
+         <SearchBar filterText={filterText}  inStockOnly={inStockOnly} 
+      onFilterTextChange={setFilterText}
+      onInStockOnlyChange={setInStockOnly}/>
+        <FilterableMessageTable messages={blogMessages} filterText={filterText} />
+      </main>
+    );
 }
