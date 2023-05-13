@@ -8,9 +8,9 @@ import { useState } from "react";
 function MessageRow({ message }) {
   return (
     <tr>
-      <td>{message.author}</td>
-      <td>{message.message}</td>
-      <td>{message.date}</td>
+      <td>{message[0]}</td>
+      <td>{message[1]}</td>
+      <td>{message[2]}</td>
     </tr>
   );
 }
@@ -18,12 +18,11 @@ function MessageRow({ message }) {
 function SearchBar({ filterText, onFilterTextChange }) {
   return (
     <form>
-      <input
-        type="text"
-        value={filterText}
-        placeholder="Search..."
-        onChange={(e) => onFilterTextChange(e.target.value)}
-      />
+      <label>
+        Procure uma mensagem:
+      </label>
+      <input type="text" value={filterText} placeholder="Pesquise..." 
+      onChange={(e) => onFilterTextChange(e.target.value)}/>
     </form>
   );
 }
